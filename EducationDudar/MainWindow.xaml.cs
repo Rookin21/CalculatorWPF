@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Data;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -21,7 +21,16 @@ namespace EducationDudar
 
         private void ButtonClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            string str = (string)((Button)e.OriginalSource).Content; // Обращение к строке. (Button) и (string) - присвоение типа 
+
+            if (str == "AC")
+                TextLabel.Text = "";
+            else if (str == "=")
+            {
+                string value = new DataTable().Compute(TextLabel.Text, null).ToString();
+                TextLabel.Text = value;
+            }
+                TextLabel.Text += str;
         }
     }
 }
